@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse,Http404,JsonResponse
 from .models import Tweet
+import random
 # Create your views here.
 def home_view(request,*args,**kwargs):#for dynamic routing
     #return HttpResponse("<h1>Hello Aditya</h1>")
@@ -31,7 +32,7 @@ def tweet_detail_view(request,tweet_id,*args,**kwargs):#tweet_id received dynami
 
 def tweet_list_view(request,*args,**kwargs):
     qs=Tweet.objects.all()
-    tweet_list=[{"Id":x.id,"message":x.content} for x in qs]
+    tweet_list=[{"Id":x.id,"message":x.content,"likes":random.randint(0,695)} for x in qs]
     data={
         "response":tweet_list
     }
